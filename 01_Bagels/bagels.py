@@ -11,6 +11,8 @@ NUM_DIGITS = 3
 MAX_GUESSES = 10
 DIGITS = '0123456789'
 
+# this function checks whether the game settings are safe before the game starts.
+# since the secret numbers cannot repeat digits, the number of digits must be between 1 and 10.
 def validate_settings(num_digits: int) -> None:
     '''
     Validate the game settings before the game starts.
@@ -21,7 +23,9 @@ def validate_settings(num_digits: int) -> None:
 
     if not 1 <= num_digits <= 10:
         raise ValueError('NUM_DIGITS must be between 1 and 10.')
-    
+
+# this function creates the secret number that the player has to guess.
+# it randomly selects unique digits and joins them together as a string.    
 def generate_secret_number(num_digits: int) -> str:
     '''
     Generate a secret number with unique digits.
@@ -30,7 +34,9 @@ def generate_secret_number(num_digits: int) -> str:
     '''
 
     return ''.join(random.sample(DIGITS, num_digits))
-    
+
+# this function checks whether a value has repeated digits or not.
+# it returns True when every digit appears only once.    
 def has_unique_digits(value: str) -> bool:
     '''
     Check whether all digits in the value are unique.
@@ -42,6 +48,8 @@ def has_unique_digits(value: str) -> bool:
 
     return len(set(value)) == len(value)
 
+# this function checks whether the player's guess follows the all game rules.
+# a valid guess must have the right length, only digits, and no repeated digits.
 def is_valid_guess(guess: str, num_digits: int) -> bool:
     '''
     Check whether the player's guess is valid or not.
@@ -58,6 +66,8 @@ def is_valid_guess(guess: str, num_digits: int) -> bool:
         and has_unique_digits(guess)
     )
 
+# this function compares the player's guess with the secret number.
+# it returns clues to help the player reason better.
 def get_clues(guess: str, secret_number: str) -> str:
     '''
     Return clues for a guess.
@@ -85,6 +95,8 @@ def get_clues(guess: str, secret_number: str) -> str:
     clues.sort()
     return ' '.join(clues)
 
+# this function prints the game instructions for the player.
+# it explains the goal of the game, the number of guesses, and the meaning of each clue. 
 def display_instructions(num_digits: int, max_guesses: int) -> None:
     '''
     Display the rules of the game.
@@ -106,7 +118,9 @@ Example:
     Your guess: 843
     Clue: Fermi Pico
 ''')
-    
+
+# this function repeatedly asks the player for input until the guess is valid.
+# it also allows the player to quit if they want to quit during the current round.    
 def get_player_guess(guess_number: int, num_digits: int) -> str:
     '''
     Ask the player for a valid guess.
@@ -129,6 +143,8 @@ def get_player_guess(guess_number: int, num_digits: int) -> str:
               'with no repeated digits.'
         )
 
+# this function controls one complete round of the game.
+# it creates the secret number, collects guesses, gives clues, and decides win or loss.
 def play_round(num_digits: int, max_guesses: int) -> bool:
     '''
     Play one round of Bagels.
@@ -161,6 +177,8 @@ def play_round(num_digits: int, max_guesses: int) -> bool:
     print(f'The answer was {secret_number}')
     return False
 
+# this function asks whether the player wants another round.
+# it returns True for answers starting with 'y', such as 'yes' or 'y'.
 def ask_to_play_again() -> bool:
     '''
     Ask the player whether they want to play again.
@@ -169,6 +187,8 @@ def ask_to_play_again() -> bool:
     answer = input('Do you want to play again? (yes or no): ')
     return answer.lower().startswith('y')
 
+# this is the main entry point of the program.
+# it starts the game, tracks wins and losses, and stops when the player chooses not to continue.
 def main() -> None:
     '''
     Run the Bagels game.
