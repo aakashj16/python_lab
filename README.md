@@ -3,4 +3,4 @@ A public learning repository where I recreate, study, and extend small Python pr
 
 ## List of Projecs
 1. [Bagels](https://github.com/aakashj16/python_lab/tree/main/01_Bagels): A small deductive logic game.
-2. [Birthday](https://github.com/aakashj16/python_lab/tree/main/02_Birthday_Paradox) Paradox: Explore random simulation.
+2. [Birthday Paradox](https://github.com/aakashj16/python_lab/tree/main/02_Birthday_Paradox): Explore random simulation.
